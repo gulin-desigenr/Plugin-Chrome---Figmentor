@@ -1,59 +1,61 @@
 # Figmentor Chrome
 
-Plugin Chrome para transformar frames do Figma em documentos Elementor com importacao, reconciliacao estrutural e validacao final.
+Extensao Chrome para operar o fluxo `Figma -> IR -> Elementor -> reconcile -> verify` com escopo controlado, escrita auditavel e evidencia de convergencia.
 
-## Visao do produto
+## Tese
 
-O objetivo deste repositorio e desenvolver um unico plugin Chrome capaz de:
+Figmentor nao e um exportador cego. O cockpit principal e a extensao Chrome, que coordena leitura do Figma Web, planejamento, acionamento do bridge no WordPress/Elementor e verificacao posterior.
 
-1. ler o design no Figma Web
-2. normalizar o frame em um `Canonical IR`
-3. compilar esse IR para JSON compativel com Elementor
-4. importar o documento no WordPress/Elementor
-5. reconciliar divergencias apos a importacao
-6. validar fidelidade estrutural, semantica e visual
+O produto promete:
 
-O produto nao deve depender apenas de check visual.
+1. leitura confiavel do frame no Figma Web
+2. normalizacao para `Canonical IR`
+3. planejamento e compilacao de mutacoes permitidas
+4. importacao segura via bridge do Elementor
+5. reconciliacao estrutural apos save
+6. verificacao estrutural, semantica e visual
 
-## Principios
+O produto nao promete fidelidade universal nem autonomia irrestrita.
 
-- Figma e a fonte visual de verdade
-- o IR e o contrato interno do sistema
-- a importacao para Elementor deve ser auditavel
-- reconciliacao automatica vem antes de ajuste manual
-- verificacao visual e a ultima camada, nao a unica
+## Fundacao entregue nesta pasta
 
-## Estrutura de planejamento
+Esta pasta agora concentra a fundacao oficial da Fase 01:
+
+- docs de produto, arquitetura, contratos e capability matrix
+- scaffold TypeScript inicial para contratos e modulos
+- convencoes alinhadas ao plano mestre do plugin Chrome
+
+Arquivos principais:
 
 - [00-PLANO-MESTRE.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/00-PLANO-MESTRE.md>)
 - [01-FUNDAO-E-ARQUITETURA.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/01-FUNDAO-E-ARQUITETURA.md>)
-- [02-FIGMA-READER-E-IR.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/02-FIGMA-READER-E-IR.md>)
-- [03-COMPILADOR-ELEMENTOR-BASE.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/03-COMPILADOR-ELEMENTOR-BASE.md>)
-- [04-IMPORTACAO-E-SYNC-ELEMENTOR.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/04-IMPORTACAO-E-SYNC-ELEMENTOR.md>)
-- [05-RECONCILIACAO-ESTRUTURAL.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/05-RECONCILIACAO-ESTRUTURAL.md>)
-- [06-FIDELIDADE-VISUAL-E-RESPONSIVIDADE.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/06-FIDELIDADE-VISUAL-E-RESPONSIVIDADE.md>)
-- [07-OPERACAO-SEGURANCA-E-OBSERVABILIDADE.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/07-OPERACAO-SEGURANCA-E-OBSERVABILIDADE.md>)
-- [08-BETA-HOMOLOGACAO-E-ROLL-OUT.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/08-BETA-HOMOLOGACAO-E-ROLL-OUT.md>)
+- [docs/product/phase-01-foundation.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/docs/product/phase-01-foundation.md>)
+- [docs/product/mvp-scope.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/docs/product/mvp-scope.md>)
+- [docs/architecture/system-overview.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/docs/architecture/system-overview.md>)
+- [docs/contracts/module-interfaces.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/docs/contracts/module-interfaces.md>)
+- [docs/contracts/capability-matrix.md](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/docs/contracts/capability-matrix.md>)
+- [src/index.ts](</Users/pedrogulin/Library/Mobile Documents/com~apple~CloudDocs/PEDRO_DEV/[10] Plugin Chrome - Figmentor/src/index.ts>)
 
-## Forma de uso
+## Estrutura de repositorio
 
-Leia os arquivos em ordem. Nenhuma fase deve avancar sem cumprir os gates da fase anterior.
+- `docs/product`: visao, fase 01 e MVP
+- `docs/architecture`: fluxo ponta a ponta e fronteiras do sistema
+- `docs/contracts`: contratos operacionais e matriz de capacidades
+- `src/contracts`: tipos centrais do dominio
+- `src/modules`: modulos oficiais com placeholders tipados da fase 01
 
-## Escopo inicial do MVP
+## Convencoes
 
-Entra no MVP:
+- nenhum modulo escreve fora de um plano aprovado
+- a extensao Chrome orquestra, os modulos de dominio decidem
+- toda escrita precisa de correlacao, idempotencia e evidencia posterior
+- verificacao visual nunca substitui verificacao estrutural
 
-- leitura de frame no Figma Web
-- geracao de `Canonical IR`
-- compilacao para JSON Elementor
-- importacao do documento
-- reconciliacao estrutural
-- verificacao em `desktop` e `mobile`
+## Check rapido
 
-Fica fora do MVP:
+Depois de instalar dependencias:
 
-- interacoes complexas
-- animacoes
-- assets ricos e edicao automatica de midia
-- cobertura universal de todos os widgets do Elementor
-- autocorrecao infinita multi-rodada
+```bash
+npm install
+npm run check
+```

@@ -1,0 +1,14 @@
+{
+  "name": "figmentor-chrome-foundation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Foundation contracts and repository scaffold for Figmentor Chrome.",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
